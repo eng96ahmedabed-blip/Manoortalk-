@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مساحة استماع خاصة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pine: #1B2E28;
+    --pine-2: #24392F;
+    --paper: #F2E8D5;
+    --paper-2: #EADFC7;
+    --gold: #C79A4B;
+    --gold-dim: #8f7038;
+    --rose: #B4667A;
+    --ink: #1B2E28;
+    --ink-soft: #4B5F55;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--pine);
+    color:var(--paper);
+    font-family:'Tajawal',sans-serif;
+    line-height:1.7;
+  }
+  h1,h2,h3,.display{
+    font-family:'Aref Ruqaa',serif;
+    font-weight:700;
+    line-height:1.35;
+  }
+  a{color:inherit;}
+  button{font-family:inherit;}
+
+  /* ---------- topbar ---------- */
+  .topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 22px;
+    max-width:760px;
+    margin:0 auto;
+  }
+  .brand{
+    font-family:'Aref Ruqaa',serif;
+    font-size:1.15rem;
+    font-weight:700;
+    color:var(--gold);
+    letter-spacing:.5px;
+  }
+  .social-row{display:flex;gap:14px;}
+  .social-row a{
+    width:36px;height:36px;
+    display:flex;align-items:center;justify-content:center;
+    border:1px solid rgba(242,232,213,.25);
+    border-radius:50%;
+    color:var(--paper);
+    transition:border-color .25s, color .25s, transform .25s;
+  }
+  .social-row a:hover{border-color:var(--gold); color:var(--gold); transform:translateY(-2px);}
+  .social-row svg{width:16px;height:16px;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    max-width:640px;
+    margin:0 auto;
+    padding:48px 24px 30px;
+    text-align:center;
+  }
+  .hero .eyebrow{
+    color:var(--rose);
+    font-size:.8rem;
+    letter-spacing:2px;
+    margin-bottom:14px;
+  }
+  .hero h1{
+    font-size:2.1rem;
+    margin:0 0 18px;
+  }
+  .hero p{
+    color:rgba(242,232,213,.8);
+    font-size:1rem;
+    margin:0 0 28px;
+  }
+  .btn-start{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--gold);
+    color:var(--pine);
+    border:none;
+    padding:13px 28px;
+    border-radius:30px;
+    font-size:.95rem;
+    font-weight:700;
+    cursor:pointer;
+    transition:transform .25s, box-shadow .25s;
+    box-shadow:0 6px 20px rgba(199,154,75,.25);
+  }
+  .btn-start:hover{transform:translateY(-2px); box-shadow:0 10px 26px rgba(199,154,75,.35);}
+  .btn-start svg{width:16px;height:16px; transform:scaleX(-1);}
+  .hero-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    justify-content:center;
+  }
+  .btn-outline{
+    background:transparent;
+    color:var(--paper);
+    border:1px solid rgba(242,232,213,.4);
+    box-shadow:none;
+    text-decoration:none;
+  }
+  .btn-outline:hover{
+    border-color:var(--gold);
+    color:var(--gold);
+    box-shadow:none;
+  }
+  .hero-fallback{
+    margin:18px 0 0;
+    font-size:.8rem;
+    color:rgba(242,232,213,.55);
+  }
+  .hero-fallback strong{color:var(--gold); font-weight:700;}
+
+  /* ---------- intro slides ---------- */
+  .intro-slide{outline:none;}
+  .intro-slide .kicker{
+    font-size:.78rem;
+    color:var(--rose);
+    letter-spacing:1.5px;
+    margin-bottom:10px;
+  }
+  .intro-slide h2{
+    font-size:1.5rem;
+    margin:0 0 14px;
+  }
+  .intro-slide p{
+    font-size:.96rem;
+    color:var(--ink-soft);
+    margin:0;
+  }
+  .ratio-visual{
+    display:flex;
+    align-items:flex-end;
+    gap:14px;
+    margin:22px 0 26px;
+  }
+  .ratio-block{
+    flex:1;
+    text-align:center;
+    border-radius:14px;
+    padding:20px 10px;
+  }
+  .ratio-block.big{
+    background:var(--pine);
+    color:var(--paper);
+    padding-top:34px;
+    padding-bottom:34px;
+  }
+  .ratio-block.small{
+    background:rgba(27,46,40,.08);
+    color:var(--ink);
+  }
+  .ratio-block span{
+    display:block;
+    font-family:'Aref Ruqaa',serif;
+    font-weight:700;
+    font-size:2.1rem;
+  }
+  .ratio-block.big span{color:var(--gold);}
+  .ratio-block small{
+    display:block;
+    font-size:.75rem;
+    margin-top:6px;
+    opacity:.85;
+  }
+  .value-list{
+    list-style:none;
+    margin:20px 0 0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .value-list li{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    font-size:.92rem;
+    color:var(--ink);
+  }
+  .value-list li svg{
+    width:18px;height:18px;flex:none;margin-top:2px;color:var(--gold);
+  }
+  .price-tag{
+    display:flex;
+    align-items:baseline;
+    justify-content:center;
+    gap:8px;
+    background:var(--pine);
+    color:var(--paper);
+    border-radius:14px;
+    padding:20px;
+    margin:20px 0;
+  }
+  .price-tag .amount{
+    font-family:'Aref Ruqaa',serif;
+    font-weight:700;
+    font-size:2rem;
+    color:var(--gold);
+  }
+  .price-tag .unit{font-size:.9rem; opacity:.8;}
+
+  /* ---------- payment card ---------- */
+  .pay-card{
+    background:rgba(27,46,40,.06);
+    border:1px solid rgba(27,46,40,.15);
+    border-radius:14px;
+    padding:18px 18px 16px;
+    margin:18px 0;
+  }
+  .pay-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:10px 0;
+    border-bottom:1px dashed rgba(27,46,40,.15);
+  }
+  .pay-row:last-child{border-bottom:none;}
+  .pay-row .label{font-size:.8rem; color:var(--ink-soft);}
+  .pay-row .value{
+    font-weight:700;
+    font-size:1rem;
+    direction:ltr;
+    unicode-bidi:embed;
+  }
+  .pay-row button{
+    background:none;border:none;color:var(--ink-soft);
+    width:28px;height:28px;flex:none;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:50%;cursor:pointer;
+    transition:background .2s, color .2s;
+  }
+  .pay-row button:hover{background:rgba(27,46,40,.08); color:var(--ink);}
+  .pay-row svg{width:14px;height:14px;}
+
+  /* ---------- file upload ---------- */
+  .upload-box{
+    border:2px dashed rgba(27,46,40,.25);
+    border-radius:14px;
+    padding:24px 16px;
+    text-align:center;
+    cursor:pointer;
+    transition:border-color .2s, background .2s;
+  }
+  .upload-box:hover{border-color:var(--gold);}
+  .upload-box svg{width:26px;height:26px; color:var(--ink-soft); margin-bottom:8px;}
+  .upload-box .upload-text{font-size:.9rem; color:var(--ink-soft);}
+  .upload-preview{
+    margin-top:14px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:rgba(27,46,40,.06);
+    border-radius:12px;
+    padding:10px 12px;
+  }
+  .upload-preview img{
+    width:52px;height:52px;object-fit:cover;border-radius:8px;
+  }
+  .upload-preview .fname{font-size:.82rem; color:var(--ink); word-break:break-all;}
+
+  /* ---------- consult card ---------- */
+  .consult-card{
+    max-width:600px;
+    margin:10px auto 60px;
+    background:var(--paper);
+    color:var(--ink);
+    border-radius:18px;
+    padding:34px 28px 28px;
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+    position:relative;
+  }
+
+  /* stitch progress track */
+  .track{
+    position:relative;
+    height:3px;
+    background:rgba(27,46,40,.12);
+    border-radius:2px;
+    margin-bottom:8px;
+  }
+  .track-fill{
+    position:absolute; top:0; right:0; height:100%;
+    width:0%;
+    background:var(--gold);
+    border-radius:2px;
+    transition:width .5s ease;
+  }
+  .dots{
+    display:flex;
+    justify-content:space-between;
+    margin:0 0 30px;
+  }
+  .dot{
+    width:9px;height:9px;border-radius:50%;
+    background:rgba(27,46,40,.2);
+    transition:background .3s, transform .3s;
+  }
+  .dot.active{background:var(--rose); transform:scale(1.3);}
+  .dot.done{background:var(--gold);}
+
+  .step-label{
+    font-size:.78rem;
+    color:var(--ink-soft);
+    letter-spacing:1px;
+    margin-bottom:6px;
+  }
+  .step h2{
+    font-size:1.35rem;
+    margin:0 0 18px;
+  }
+  .step{outline:none;}
+  input[type=text], input[type=number], textarea{
+    width:100%;
+    border:1px solid rgba(27,46,40,.2);
+    background:#fff;
+    border-radius:10px;
+    padding:13px 14px;
+    font-family:'Tajawal',sans-serif;
+    font-size:.98rem;
+    color:var(--ink);
+    resize:vertical;
+    transition:border-color .2s, box-shadow .2s;
+  }
+  textarea{min-height:110px;}
+  input:focus, textarea:focus{
+    outline:none;
+    border-color:var(--gold);
+    box-shadow:0 0 0 3px rgba(199,154,75,.2);
+  }
+  .hint{font-size:.8rem; color:var(--ink-soft); margin-top:6px;}
+  .shake{animation:shake .35s;}
+  @keyframes shake{
+    0%,100%{transform:translateX(0);}
+    25%{transform:translateX(-6px);}
+    75%{transform:translateX(6px);}
+  }
+
+  .nav-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:26px;
+  }
+  .btn-prev{
+    background:none;
+    border:none;
+    color:var(--ink-soft);
+    font-size:.9rem;
+    cursor:pointer;
+    padding:10px 4px;
+  }
+  .btn-prev:disabled{opacity:0; pointer-events:none;}
+  .btn-next{
+    background:var(--pine);
+    color:var(--paper);
+    border:none;
+    padding:12px 26px;
+    border-radius:30px;
+    font-size:.92rem;
+    font-weight:700;
+    cursor:pointer;
+    transition:background .25s, transform .2s;
+  }
+  .btn-next:hover{background:var(--pine-2); transform:translateY(-1px);}
+
+  /* ---------- summary / letter ---------- */
+  .summary-wrap{
+    max-width:600px;
+    margin:10px auto 70px;
+    padding:0 4px;
+  }
+  .summary-wrap h2{
+    text-align:center;
+    color:var(--gold);
+    font-size:1.4rem;
+    margin-bottom:6px;
+  }
+  .summary-wrap>p.sub{
+    text-align:center;
+    color:rgba(242,232,213,.75);
+    font-size:.88rem;
+    margin:0 0 22px;
+  }
+  .letter{
+    background:
+      repeating-linear-gradient(var(--paper), var(--paper) 30px, rgba(27,46,40,.08) 31px);
+    background-color:var(--paper);
+    color:var(--ink);
+    border-radius:14px;
+    padding:26px 24px;
+    white-space:pre-wrap;
+    font-size:.95rem;
+    line-height:31px;
+    box-shadow:0 20px 50px rgba(0,0,0,.3);
+    max-height:60vh;
+    overflow-y:auto;
+  }
+  .summary-actions{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-top:22px;
+  }
+  .btn-primary, .btn-secondary{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:14px;
+    border-radius:30px;
+    font-size:.95rem;
+    font-weight:700;
+    cursor:pointer;
+    text-decoration:none;
+    border:none;
+    transition:transform .2s, opacity .2s;
+  }
+  .btn-primary{background:var(--gold); color:var(--pine);}
+  .btn-secondary{background:transparent; color:var(--paper); border:1px solid rgba(242,232,213,.35);}
+  .btn-primary:hover, .btn-secondary:hover{transform:translateY(-2px);}
+  .btn-primary svg, .btn-secondary svg{width:16px;height:16px;}
+  .edit-link{
+    display:block;
+    text-align:center;
+    color:rgba(242,232,213,.6);
+    font-size:.82rem;
+    margin-top:16px;
+    cursor:pointer;
+    text-decoration:underline;
+  }
+  .email-chip{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    background:rgba(242,232,213,.08);
+    border:1px solid rgba(242,232,213,.2);
+    border-radius:12px;
+    padding:12px 16px;
+    font-size:.88rem;
+    color:var(--paper);
+  }
+  .email-chip strong{color:var(--gold); font-weight:700; direction:ltr; unicode-bidi:embed;}
+  .email-chip button{
+    background:none; border:none; color:var(--paper);
+    width:30px; height:30px; flex:none;
+    display:flex; align-items:center; justify-content:center;
+    border-radius:50%;
+    cursor:pointer;
+    transition:background .2s;
+  }
+  .email-chip button:hover{background:rgba(242,232,213,.15);}
+  .email-chip svg{width:15px;height:15px;}
+  .steps-hint{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    font-size:.82rem;
+    color:rgba(242,232,213,.65);
+    padding:4px 4px 0;
+  }
+  .steps-hint b{color:var(--gold); margin-left:6px;}
+  .attach-warning{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    background:rgba(180,102,122,.15);
+    border:1px solid rgba(180,102,122,.4);
+    border-radius:12px;
+    padding:14px 16px;
+    font-size:.85rem;
+    color:var(--paper);
+    line-height:1.6;
+  }
+  .attach-warning svg{width:20px;height:20px;flex:none;color:var(--rose);margin-top:1px;}
+  .attach-warning b{color:var(--rose);}
+  .btn-mail{
+    background:linear-gradient(135deg, var(--gold), #e0b96a);
+    color:var(--pine);
+    box-shadow:0 10px 28px rgba(199,154,75,.35);
+    font-size:1rem;
+    padding:16px;
+  }
+  .btn-mail:hover{box-shadow:0 14px 34px rgba(199,154,75,.45); transform:translateY(-2px);}
+  .toast{
+    position:fixed;
+    bottom:24px; left:50%; transform:translateX(-50%) translateY(20px);
+    background:var(--gold); color:var(--pine);
+    padding:10px 20px; border-radius:24px;
+    font-size:.85rem; font-weight:700;
+    opacity:0; pointer-events:none;
+    transition:opacity .3s, transform .3s;
+    z-index:50;
+  }
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+
+  /* ---------- footer ---------- */
+  footer{
+    max-width:640px;
+    margin:0 auto;
+    padding:20px 24px 50px;
+    text-align:center;
+  }
+  footer .lock{
+    font-size:.8rem;
+    color:rgba(242,232,213,.55);
+    margin-bottom:18px;
+  }
+  footer .social-row{justify-content:center;}
+
+  [hidden]{display:none !important;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">Manoortalk</div>
+  <div class="social-row">
+    <a href="https://www.instagram.com/manoortalk?igsh=NDF2bmluN3kyNG5r&utm_source=qr" target="_blank" rel="noopener" aria-label="انستقرام">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+    </a>
+    <a href="https://www.tiktok.com/@ahmed.abed3061" target="_blank" rel="noopener" aria-label="تيك توك">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 4v9.5a3.5 3.5 0 1 1-3-3.46"/><path d="M14 4c.4 2.4 2 4 4.5 4.3"/></svg>
+    </a>
+    <a href="https://www.youtube.com/@ahmedabed5367" target="_blank" rel="noopener" aria-label="يوتيوب">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="6" width="19" height="12" rx="4"/><path d="M11 9.7v4.6l4-2.3-4-2.3z" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a href="mailto:manoortalkahmed@gmail.com" aria-label="إيميل">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7l8 6 8-6"/></svg>
+    </a>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="eyebrow">مساحة خاصة</div>
+  <h1>قبل أن أسمع قصتك، دعني أفهمها</h1>
+  <p>أجب عن بضعة أسئلة بصدق وهدوء، وسأستلم ملخصًا كاملًا لحالتك حتى أرد عليك بشكل شخصي ومركّز — إجاباتك لا تُنشر ولا تُخزَّن، تصلني أنا فقط.</p>
+  <div class="hero-actions">
+    <button class="btn-start btn-outline" id="collabBtn" type="button">
+      التعاون والشراكات
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+    <button class="btn-start" id="startBtn" type="button">
+      الاستشارات الخاصة
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+  <p class="hero-fallback">تحتاج مساعدة؟ راسلنا مباشرة على <strong style="direction:ltr;unicode-bidi:embed;">manoortalkahmed@gmail.com</strong></p>
+</section>
+
+<section class="consult-card" id="introSection" hidden>
+  <div class="track"><div class="track-fill" id="introTrackFill"></div></div>
+  <div class="dots" id="introDots"></div>
+
+  <div class="intro-slide" data-intro-step="0" tabindex="-1">
+    <div class="kicker">قبل أن نبدأ</div>
+    <h2>٪80 فهم المشكلة، ٪20 فقط الحل</h2>
+    <div class="ratio-visual">
+      <div class="ratio-block big"><span>80%</span><small>فهم المشكلة وتحديد أسبابها</small></div>
+      <div class="ratio-block small"><span>20%</span><small>الحل والتطبيق</small></div>
+    </div>
+    <p>علميًا، أي أزمة أو مشكلة في العالم تتكون من هذه النسبة — الجزء الأكبر هو فهم ما يحدث فعلًا، والجزء الأصغر هو تنفيذ الحل.</p>
+  </div>
+
+  <div class="intro-slide" data-intro-step="1" hidden tabindex="-1">
+    <div class="kicker">الخطأ الشائع</div>
+    <h2>أغلب الناس يهملون الأهم</h2>
+    <p>معظمنا يقفز مباشرة إلى "الحل" ويتجاهل أهم خطوة في التخلص من المشكلة والوصول إلى الهدف — وهي فهم الجذر الحقيقي لما يحدث. هذا بالضبط سبب تكرار نفس المشكلة رغم كل المحاولات.</p>
+  </div>
+
+  <div class="intro-slide" data-intro-step="2" hidden tabindex="-1">
+    <div class="kicker">ماذا نفعل معًا</div>
+    <h2>مكالمة خاصة لمدة 90 دقيقة</h2>
+    <ul class="value-list">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> تشريح المشكلة بشكل علمي ودقيق</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> تحديد نقاط الضعف وعلاجها</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> وضع خطة عملية واضحة للوصول إلى أهدافك</li>
+    </ul>
+  </div>
+
+  <div class="intro-slide" data-intro-step="3" hidden tabindex="-1">
+    <div class="kicker">القيمة الحقيقية</div>
+    <h2>توفّر عليك سنوات من الضياع</h2>
+    <p>هذه الاستشارة تختصر عليك سنوات طويلة من الجهد والخسارة — في الوقت والمال والطاقة. خطوة واحدة صحيحة قد تغيّر مسارك بالكامل.</p>
+    <div class="price-tag">
+      <span class="amount">50,000</span>
+      <span class="unit">دينار عراقي / الجلسة</span>
+    </div>
+  </div>
+
+  <div class="nav-row">
+    <button type="button" class="btn-prev" id="introPrevBtn">السابق</button>
+    <button type="button" class="btn-next" id="introNextBtn">التالي</button>
+  </div>
+</section>
+
+<section class="consult-card" id="formSection" hidden>
+  <div class="track"><div class="track-fill" id="trackFill"></div></div>
+  <div class="dots" id="dots"></div>
+
+  <form id="consultForm">
+    <div class="step" data-flow="consult" data-step="0" tabindex="-1">
+      <div class="step-label">١ من ٨</div>
+      <h2>ما الاسم الذي تحب أن أناديك به؟</h2>
+      <input type="text" id="q_name" placeholder="اختياري">
+    </div>
+
+    <div class="step" data-flow="consult" data-step="1" hidden tabindex="-1">
+      <div class="step-label">٢ من ٨</div>
+      <h2>كم عمرك؟</h2>
+      <input type="text" id="q_age" placeholder="مثال: 24">
+    </div>
+
+    <div class="step" data-flow="consult" data-step="2" hidden tabindex="-1">
+      <div class="step-label">٣ من ٨</div>
+      <h2>صف حالتك أو الموضوع الذي تحتاج فيه استشارة</h2>
+      <textarea id="q_topic" required placeholder="خذ وقتك، اكتب كل ما تشعر أنه مهم..."></textarea>
+      <div class="hint">هذا هو جوهر الاستشارة، كن صريحًا قدر ما تستطيع.</div>
+    </div>
+
+    <div class="step" data-flow="consult" data-step="3" hidden tabindex="-1">
+      <div class="step-label">٤ من ٨</div>
+      <h2>منذ متى وأنت تعيش هذا الموقف أو الشعور؟</h2>
+      <input type="text" id="q_since" placeholder="مثال: منذ شهرين، منذ الطفولة...">
+    </div>
+
+    <div class="step" data-flow="consult" data-step="4" hidden tabindex="-1">
+      <div class="step-label">٥ من ٨</div>
+      <h2>هل شاركت هذا مع أحد من قبل؟</h2>
+      <textarea id="q_shared" placeholder="مثلًا: صديق مقرب، أحد الأهل، معالج... أو لم أشارك أحدًا بعد"></textarea>
+    </div>
+
+    <div class="step" data-flow="consult" data-step="5" hidden tabindex="-1">
+      <div class="step-label">٦ من ٨</div>
+      <h2>ما الذي تتمنى الوصول إليه من هذه الجلسة؟</h2>
+      <textarea id="q_goal" required placeholder="نصيحة، تفريغ، وضوح، خطة عملية..."></textarea>
+    </div>
+
+    <div class="step" data-flow="consult" data-step="6" hidden tabindex="-1">
+      <div class="step-label">٧ من ٨</div>
+      <h2>معلومات الدفع</h2>
+      <div class="pay-card">
+        <div class="pay-row">
+          <span class="label">قيمة الاستشارة</span>
+          <span class="value">50,000 د.ع</span>
+        </div>
+        <div class="pay-row">
+          <span class="label">التحويل على ماستركارد</span>
+          <span class="value" id="cardNumberText">2203869165</span>
+          <button type="button" id="copyCardBtn" aria-label="نسخ رقم البطاقة">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M4 16V4h12"/></svg>
+          </button>
+        </div>
+        <div class="pay-row">
+          <span class="label">الاسم</span>
+          <span class="value">Ahmed Abd</span>
+        </div>
+      </div>
+      <div class="hint">حوّل المبلغ إلى البيانات أعلاه، وفي الخطوة القادمة ارفع صورة إثبات التحويل.</div>
+    </div>
+
+    <div class="step" data-flow="consult" data-step="7" hidden tabindex="-1">
+      <div class="step-label">٨ من ٨</div>
+      <h2>ارفع صورة إثبات التحويل</h2>
+      <label class="upload-box" id="uploadLabel" for="q_payment_proof">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
+        <div class="upload-text">اضغط لاختيار صورة من معرض الصور</div>
+      </label>
+      <input type="file" id="q_payment_proof" accept="image/*" required style="display:none;">
+      <div class="upload-preview" id="uploadPreview" hidden>
+        <img id="uploadPreviewImg" alt="">
+        <span class="fname" id="uploadFileName"></span>
+      </div>
+      <div class="hint">📎 ملاحظة: عند إرسال الملخص، تذكّر إرفاق هذه الصورة يدويًا في نفس الرسالة قبل الإرسال.</div>
+    </div>
+
+    <div class="step" data-flow="collab" data-step="0" hidden tabindex="-1">
+      <div class="step-label">١ من ٣</div>
+      <h2>ما اسم شركتك أو جهتك؟</h2>
+      <input type="text" id="c_company" required placeholder="اسم الشركة / الجهة">
+    </div>
+
+    <div class="step" data-flow="collab" data-step="1" hidden tabindex="-1">
+      <div class="step-label">٢ من ٣</div>
+      <h2>وسيلة التواصل معك</h2>
+      <input type="text" id="c_contact" required placeholder="رقم هاتف / واتساب أو بريد إلكتروني">
+    </div>
+
+    <div class="step" data-flow="collab" data-step="2" hidden tabindex="-1">
+      <div class="step-label">٣ من ٣</div>
+      <h2>في أي مجال تودون التعاون؟</h2>
+      <textarea id="c_field" required placeholder="مثال: إعلانات، محتوى مشترك، رعاية، توزيع منتج..."></textarea>
+    </div>
+
+    <div class="nav-row">
+      <button type="button" class="btn-prev" id="prevBtn">السابق</button>
+      <button type="button" class="btn-next" id="nextBtn">التالي</button>
+    </div>
+  </form>
+</section>
+
+<section class="summary-wrap" id="summarySection" hidden>
+  <h2 id="summaryTitle">ملخص حالتك</h2>
+  <p class="sub" id="summarySub">راجع ما كتبته، ثم أرسله لي مباشرة</p>
+  <div class="letter" id="letterBox"></div>
+  <div class="summary-actions">
+    <div class="attach-warning" id="attachWarning" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L14.7 3.86a2 2 0 0 0-3.4 0z"/></svg>
+      <span>مهم: المتصفح لا يقدر يرفق صورة التحويل تلقائيًا — بعد ما تفتح الرسالة، أرفق الصورة بنفسك من معرض الصور <b>قبل</b> الضغط على إرسال.</span>
+    </div>
+    <a class="btn-primary btn-mail" id="mailBtn" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7l8 6 8-6"/></svg>
+      إرسال عبر الإيميل
+    </a>
+    <div class="email-chip">
+      <span>أرسله إلى: <strong>manoortalkahmed@gmail.com</strong></span>
+      <button type="button" id="copyEmailBtn" aria-label="نسخ الإيميل">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M4 16V4h12"/></svg>
+      </button>
+    </div>
+    <button class="btn-secondary" id="copyBtn" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M4 16V4h12"/></svg>
+      لم تفتح الرسالة؟ انسخ الملخص يدويًا
+    </button>
+    <div class="steps-hint">
+      <span><b>١</b> اضغط "إرسال عبر الإيميل"</span>
+      <span><b>٢</b> أرفق صورة التحويل يدويًا (إن وُجدت)</span>
+      <span><b>٣</b> اضغط إرسال داخل تطبيق البريد</span>
+    </div>
+  </div>
+  <span class="edit-link" id="editLink">تعديل إجاباتي</span>
+</section>
+
+<footer>
+  <div class="lock">🔒 هذا النموذج خاص، لا تُخزَّن إجاباتك في أي مكان — تُرسل مباشرة إليّ فقط.</div>
+  <div class="social-row">
+    <a href="https://www.instagram.com/manoortalk?igsh=NDF2bmluN3kyNG5r&utm_source=qr" target="_blank" rel="noopener" aria-label="انستقرام">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+    </a>
+    <a href="https://www.tiktok.com/@ahmed.abed3061" target="_blank" rel="noopener" aria-label="تيك توك">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 4v9.5a3.5 3.5 0 1 1-3-3.46"/><path d="M14 4c.4 2.4 2 4 4.5 4.3"/></svg>
+    </a>
+    <a href="https://www.youtube.com/@ahmedabed5367" target="_blank" rel="noopener" aria-label="يوتيوب">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="6" width="19" height="12" rx="4"/><path d="M11 9.7v4.6l4-2.3-4-2.3z" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a href="mailto:manoortalkahmed@gmail.com" aria-label="إيميل">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7l8 6 8-6"/></svg>
+    </a>
+  </div>
+</footer>
+
+<div class="toast" id="toast">تم النسخ ✓</div>
+
+<script>
+  const dotsWrap = document.getElementById('dots');
+  const trackFill = document.getElementById('trackFill');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const formSection = document.getElementById('formSection');
+  const introSection = document.getElementById('introSection');
+  const introDotsWrap = document.getElementById('introDots');
+  const introTrackFill = document.getElementById('introTrackFill');
+  const introPrevBtn = document.getElementById('introPrevBtn');
+  const introNextBtn = document.getElementById('introNextBtn');
+  const summarySection = document.getElementById('summarySection');
+  const summaryTitle = document.getElementById('summaryTitle');
+  const summarySub = document.getElementById('summarySub');
+  const startBtn = document.getElementById('startBtn');
+  const collabBtn = document.getElementById('collabBtn');
+  const editLink = document.getElementById('editLink');
+  const copyBtn = document.getElementById('copyBtn');
+  const mailBtn = document.getElementById('mailBtn');
+  const attachWarning = document.getElementById('attachWarning');
+  const letterBox = document.getElementById('letterBox');
+  const toast = document.getElementById('toast');
+
+  // ---- intro slides carousel ----
+  const introSlides = Array.from(document.querySelectorAll('.intro-slide'));
+  const introTotal = introSlides.length;
+  let introCurrent = 0;
+  for(let i=0;i<introTotal;i++){
+    const d = document.createElement('div');
+    d.className = 'dot';
+    introDotsWrap.appendChild(d);
+  }
+  const introDots = Array.from(introDotsWrap.children);
+
+  function renderIntro(){
+    introSlides.forEach((s,i)=> s.hidden = i !== introCurrent);
+    introDots.forEach((d,i)=>{
+      d.classList.toggle('active', i===introCurrent);
+      d.classList.toggle('done', i<introCurrent);
+    });
+    introTrackFill.style.width = introTotal>1 ? ((introCurrent)/(introTotal-1))*100 + '%' : '100%';
+    introPrevBtn.disabled = introCurrent === 0;
+    introNextBtn.textContent = introCurrent === introTotal-1 ? 'ابدأ الاستشارة الآن' : 'التالي';
+    introSlides[introCurrent].focus();
+  }
+
+  introNextBtn.addEventListener('click', ()=>{
+    if(introCurrent < introTotal-1){
+      introCurrent++;
+      renderIntro();
+    } else {
+      introSection.hidden = true;
+      startFlow('consult');
+    }
+  });
+  introPrevBtn.addEventListener('click', ()=>{
+    if(introCurrent>0){ introCurrent--; renderIntro(); }
+  });
+
+  let flow = 'consult';
+  let steps = [];
+  let total = 0;
+  let current = 0;
+  let dots = [];
+
+  function stepsFor(f){
+    return Array.from(document.querySelectorAll('.step[data-flow="'+f+'"]'));
+  }
+
+  function startFlow(f){
+    flow = f;
+    document.querySelectorAll('.step').forEach(s=> s.hidden = true);
+    steps = stepsFor(flow);
+    total = steps.length;
+    current = 0;
+    dotsWrap.innerHTML = '';
+    for(let i=0;i<total;i++){
+      const d = document.createElement('div');
+      d.className = 'dot';
+      dotsWrap.appendChild(d);
+    }
+    dots = Array.from(dotsWrap.children);
+    formSection.hidden = false;
+    render();
+    formSection.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  function render(){
+    steps.forEach((s,i)=> s.hidden = i !== current);
+    dots.forEach((d,i)=>{
+      d.classList.toggle('active', i===current);
+      d.classList.toggle('done', i<current);
+    });
+    trackFill.style.width = total>1 ? ((current)/(total-1))*100 + '%' : '100%';
+    prevBtn.disabled = current === 0;
+    nextBtn.textContent = current === total-1 ? 'مراجعة الملخص' : 'التالي';
+    steps[current].focus();
+  }
+
+  function currentRequiredField(){
+    return steps[current].querySelector('[required]');
+  }
+
+  function isFieldEmpty(field){
+    if(field.type === 'file') return field.files.length === 0;
+    return !field.value.trim();
+  }
+
+  function goNext(){
+    const req = currentRequiredField();
+    if(req && isFieldEmpty(req)){
+      const shakeTarget = req.type === 'file' ? document.getElementById('uploadLabel') : req;
+      shakeTarget.classList.add('shake');
+      if(req.type !== 'file') req.focus();
+      setTimeout(()=> shakeTarget.classList.remove('shake'), 400);
+      return;
+    }
+    if(current < total-1){
+      current++;
+      render();
+    } else {
+      showSummary();
+    }
+  }
+
+  function goPrev(){
+    if(current>0){ current--; render(); }
+  }
+
+  startBtn.addEventListener('click', ()=>{
+    introCurrent = 0;
+    renderIntro();
+    introSection.hidden = false;
+    formSection.hidden = true;
+    introSection.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+  collabBtn.addEventListener('click', ()=>{
+    introSection.hidden = true;
+    startFlow('collab');
+  });
+  nextBtn.addEventListener('click', goNext);
+  prevBtn.addEventListener('click', goPrev);
+
+  function val(id){
+    const v = document.getElementById(id).value.trim();
+    return v ? v : '—';
+  }
+
+  function buildConsultSummary(){
+    const name = val('q_name');
+    const proofFile = document.getElementById('q_payment_proof').files[0];
+    const lines = [
+      `استشارة جديدة من مساحة Manoortalk`,
+      ``,
+      `الاسم: ${name}`,
+      `العمر: ${val('q_age')}`,
+      ``,
+      `الموضوع:`,
+      `${val('q_topic')}`,
+      ``,
+      `منذ متى: ${val('q_since')}`,
+      ``,
+      `هل شارك هذا من قبل:`,
+      `${val('q_shared')}`,
+      ``,
+      `ما يتمناه من الجلسة:`,
+      `${val('q_goal')}`,
+      ``,
+      `تم تحويل قيمة الاستشارة (50,000 د.ع): نعم`,
+      `📎 صورة إثبات التحويل: ${proofFile ? proofFile.name + ' (مرفقة على الجهاز، يرجى إرفاقها يدويًا بالرسالة)' : 'لم يتم إرفاقها'}`,
+    ];
+    return { text: lines.join('\n'), subject: `استشارة جديدة${name !== '—' ? ' – ' + name : ''}` };
+  }
+
+  function buildCollabSummary(){
+    const company = val('c_company');
+    const lines = [
+      `طلب تعاون / شراكة جديد من مساحة Manoortalk`,
+      ``,
+      `اسم الشركة / الجهة: ${company}`,
+      `وسيلة التواصل: ${val('c_contact')}`,
+      ``,
+      `مجال التعاون:`,
+      `${val('c_field')}`,
+    ];
+    return { text: lines.join('\n'), subject: `طلب تعاون / شراكة${company !== '—' ? ' – ' + company : ''}` };
+  }
+
+  function showSummary(){
+    const built = flow === 'collab' ? buildCollabSummary() : buildConsultSummary();
+    letterBox.textContent = built.text;
+    mailBtn.href = `mailto:manoortalkahmed@gmail.com?subject=${encodeURIComponent(built.subject)}&body=${encodeURIComponent(built.text)}`;
+
+    if(flow === 'collab'){
+      summaryTitle.textContent = 'ملخص طلب التعاون';
+      summarySub.textContent = 'انسخ المعلومات وأرسلها إلى الإيميل، وسيتم الرد عليكم في أقرب فرصة';
+      attachWarning.hidden = true;
+    } else {
+      summaryTitle.textContent = 'ملخص حالتك';
+      summarySub.textContent = 'راجع ما كتبته، ثم أرسله لي مباشرة مع صورة التحويل — سنرسل لك تفاصيل الجلسة ونحدد موعد المكالمة بناءً على وقتك';
+      attachWarning.hidden = false;
+    }
+
+    formSection.hidden = true;
+    summarySection.hidden = false;
+    summarySection.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  editLink.addEventListener('click', ()=>{
+    summarySection.hidden = true;
+    formSection.hidden = false;
+    formSection.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+
+  copyBtn.addEventListener('click', async ()=>{
+    try{
+      await navigator.clipboard.writeText(letterBox.textContent);
+    }catch(e){
+      const range = document.createRange();
+      range.selectNode(letterBox);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+      document.execCommand('copy');
+      window.getSelection().removeAllRanges();
+    }
+    toast.classList.add('show');
+    setTimeout(()=> toast.classList.remove('show'), 1800);
+  });
+
+  const copyEmailBtn = document.getElementById('copyEmailBtn');
+  copyEmailBtn.addEventListener('click', async ()=>{
+    const email = 'manoortalkahmed@gmail.com';
+    try{
+      await navigator.clipboard.writeText(email);
+    }catch(e){
+      const ta = document.createElement('textarea');
+      ta.value = email;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
+    toast.textContent = 'تم نسخ الإيميل ✓';
+    toast.classList.add('show');
+    setTimeout(()=>{
+      toast.classList.remove('show');
+      setTimeout(()=> toast.textContent = 'تم النسخ ✓', 300);
+    }, 1800);
+  });
+
+  const copyCardBtn = document.getElementById('copyCardBtn');
+  copyCardBtn.addEventListener('click', async ()=>{
+    const card = '2203869165';
+    try{
+      await navigator.clipboard.writeText(card);
+    }catch(e){
+      const ta = document.createElement('textarea');
+      ta.value = card;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
+    toast.textContent = 'تم نسخ رقم البطاقة ✓';
+    toast.classList.add('show');
+    setTimeout(()=>{
+      toast.classList.remove('show');
+      setTimeout(()=> toast.textContent = 'تم النسخ ✓', 300);
+    }, 1800);
+  });
+
+  const paymentProofInput = document.getElementById('q_payment_proof');
+  const uploadPreview = document.getElementById('uploadPreview');
+  const uploadPreviewImg = document.getElementById('uploadPreviewImg');
+  const uploadFileName = document.getElementById('uploadFileName');
+  const uploadLabel = document.getElementById('uploadLabel');
+  paymentProofInput.addEventListener('change', ()=>{
+    const file = paymentProofInput.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = (e)=>{
+      uploadPreviewImg.src = e.target.result;
+      uploadFileName.textContent = file.name;
+      uploadPreview.hidden = false;
+      uploadLabel.querySelector('.upload-text').textContent = 'تم اختيار الصورة — اضغط لتغييرها';
+    };
+    reader.readAsDataURL(file);
+  });
+</script>
+</body>
+</html>
